@@ -30,7 +30,7 @@
 5. Соберите и запустите контейнеры:
 
    ```bash
-   docker-compose up --build
+   docker compose up --build
    ```
 
 6. Приложение будет доступно по адресу http://localhost:8000/.
