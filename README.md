@@ -26,12 +26,10 @@
    ```
    DEBUG=True
    SECRET_KEY=django-insecure-53u_bf0uwa)@^o$64(79#frk2=r0d7eya4d+5@wgbmi(tlcgi3
-   DB_URL=postgres://postgres:postgres@0.0.0.0:5432/pinger_db
+   DB_URL=postgres://postgres:postgres@db:5432/pinger_db
    POSTGRES_USER=postgres
    POSTGRES_PASSWORD=postgres
    POSTGRES_DB=pinger_db
-   DB_HOST=0.0.0.0
-   DB_PORT=5432
    ```
 
 5. Соберите и запустите контейнеры:
@@ -43,14 +41,4 @@
 6. Приложение будет доступно по адресу http://localhost:8000/.
 
 ## Использование
-   ```bash
-   docker compose run app python manage.py makemigrations
-   ```
 
-   ```bash
-   docker compose run app python manage.py migrate
-   ```
-
-   ```bash
-  docker compose logs db
-   ```
