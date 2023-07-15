@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Response Time Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <canvas id="responseTimeChart"></canvas>
+    <script>
+        function updateChart(data) {
+            const ctx = document.getElementById('responseTimeChart').getContext('2d');
+
+            const domains = Array.from(new Set(data.map(item => item.domain)));
+            const labels = Array.from(Array(24).keys());
+            const datasets = [];
+
+            domains.forEach(domain => {
+                const domainData = data.filter(item => item.domain === domain);
+                const responseTimes = labels.map(hour => {
+                    const responseData = domainData.find(item => item.time_hour === hour);
+                    return responseData ? responseData.response_time : null;
+                });
+
+                datasets.push({
+                    label: domain,
+                    data: responseTimes,
+                });
+            });
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: datasets,
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                },
+            });
+        }
+
+        $(document).ready(function() {
+            $.ajax({
+                url: '/api/responsetime/',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    updateChart(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+
+            setInterval(function() {
+                $.ajax({
+                    url: '/api/responsetime/',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        updateChart(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }, 30000);
+        });
+    </script>
+</body>
+</html>

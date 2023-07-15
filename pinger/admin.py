@@ -1,3 +1,5 @@
 from django.contrib import admin
+from pinger.models import Domain, ResponseTime
 
-# Register your models here.
+admin.site.register(Domain)
+admin.site.register(ResponseTime)
