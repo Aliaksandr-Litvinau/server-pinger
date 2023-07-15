@@ -37,8 +37,12 @@
    ```bash
    docker compose up --build
    ```
+   
+6. Coздать суперюзера для возможности добавления доменов из админки:
+   ```bash
+   docker compose run app sh -c "python manage.py createsuperuser"
+   ```
 
-6. Приложение будет доступно по адресу http://localhost:8000/.
+7. Приложение будет доступно по адресу http://0.0.0.0:8000/.
 
-## Использование
 
