@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://postgres:postgres@0.0.0.0:5432/pinger_db'  #db instead 00000
+        default='postgres://postgres:postgres@db:5432/pinger_db'
     )
 }
 

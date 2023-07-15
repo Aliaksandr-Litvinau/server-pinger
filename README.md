@@ -43,14 +43,4 @@
 6. Приложение будет доступно по адресу http://localhost:8000/.
 
 ## Использование
-   ```bash
-   docker compose run app python manage.py makemigrations
-   ```
 
-   ```bash
-   docker compose run app python manage.py migrate
-   ```
-
-   ```bash
-  docker compose logs db
-   ```
