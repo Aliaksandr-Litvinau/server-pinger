@@ -11,4 +11,5 @@ class PingerConfig(AppConfig):
         if connection.connection is not None and connection.has_table('pinger_domain'):
             from pinger.ping import DomainPingController
             ping_controller = DomainPingController()
-            ping_controller.ping_domains()
+            ping_controller.start()
+
